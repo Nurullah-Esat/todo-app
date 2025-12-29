@@ -1,5 +1,11 @@
 # Advanced Task Manager
 
+## 📸 Screenshots
+
+| Login Interface | Task Dashboard |
+| :--- | :--- |
+| ![Login Page](images/Screenshot_8.jpg) | ![Dashboard](images/Screenshot_9.jpg) |
+
 A full-stack To-Do List application designed for efficient task management with integrated user authentication and data visualization.
 
 ## 🚀 Key Features
@@ -12,16 +18,11 @@ A full-stack To-Do List application designed for efficient task management with 
 
 ## 🛠 Tech Stack
 
-* **Backend**: PHP / Python-Flask (Specify your backend here).
+* **Backend**: PHP / Python.
 * **Frontend**: HTML5, CSS3, JavaScript.
-* **Database**: MySQL / MongoDB (Specify your database here).
+* **Database**: MySQL.
 * **Visualization**: Chart.js / Similar library.
 
-## 📸 Screenshots
-
-| Login Interface | Task Dashboard |
-| :--- | :--- |
-| ![Login Page](images/Screenshot_8.jpg) | ![Dashboard](images/Screenshot_9.jpg) |
 
 ## ⚙️ Installation
 

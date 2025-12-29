@@ -21,7 +21,7 @@ A full-stack To-Do List application designed for efficient task management with 
 
 | Login Interface | Task Dashboard |
 | :--- | :--- |
-| ![Login Page](https://github.com/Nurullah-Esat/todo-app/images/Screenshot_8.jpg) | ![Dashboard](https://github.com/Nurullah-Esat/todo-app/images/Screenshot_9.jpg) |
+| ![Login Page](https://github.com/Nurullah-Esat/todo-app/tree/master/images/Screenshot_8.jpg) | ![Dashboard](https://github.com/Nurullah-Esat/todo-app/tree/master/images/Screenshot_9.jpg) |
 
 ## ⚙️ Installation
 

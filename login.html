@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Girişi</title>
+    <!-- <link rel="stylesheet" href="styles.css"> <!- CSS dosyanızı ekleyin -->
+    <!-- <script src="script.js" defer></script> <!- Animasyonlar için JS -->
+    <style>
+        /* Form stilleri ve arka plan için gerekli CSS */
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+        body {
+            background-image: url('http://localhost/todo_app/images/GdGGdZRagAEBtc6.jpg');
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .login-page {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        .form input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #4824eb;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background: #270462;
+        }
+
+        .form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+
+        .form .message a {
+            color: #7C4DFF;
+            text-decoration: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <!-- Kayıt Formu -->
+            <form class="register-form hidden" action="http://localhost/todo_app/register.php" method="POST">
+                <input type="text" name="username" id="username" placeholder="Kullanıcı Adı" required />
+                <input type="password" name="password" id="password" placeholder="Şifre" required />
+                <input type="email" name="email" id="email" placeholder="E-posta Adresi" required />
+                <button type="submit">Kayıt Ol</button>
+                <p class="message">Hesabınız zaten var mı? <a href="#">Giriş Yap</a></p>
+               
+            </form>
+            <br>
+            <!-- Giriş Yap Formu -->
+                <input type="text" name="loginUsername" placeholder="Kullanıcı Adı" required />
+                <input type="password" name="loginPassword" placeholder="Şifre" required />
+                <button type="button" onclick="loginForm()">Giriş Yap</button>
+                <p class="message">Hesabınız yok mu? <a href="#">Kayıt Ol</a></p>
+                <div id="errorMessage" class="error-message"></div>
+        </div>
+    </div>
+
+    <script>
+        // Kayıt formunu dinamik olarak gönder
+        document.querySelector('.register-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Formun varsayılan davranışını engelle
+
+            const username = document.querySelector('[name="username"]').value.trim();
+            const password = document.querySelector('[name="password"]').value.trim();
+            const email = document.querySelector('[name="email"]').value.trim();
+            const errorMessage = document.createElement('div'); // Dinamik hata mesajı için element oluştur
+            errorMessage.style.color = 'red';
+            errorMessage.style.marginTop = '10px';
+
+            // Hata mesajını formun altına ekle
+            const form = this;
+            if (!form.contains(errorMessage)) {
+                form.appendChild(errorMessage);
+            }
+
+            try {
+                const response = await fetch('http://localhost/todo_app/register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&email=${encodeURIComponent(email)}`
+                });
+
+                const result = await response.json();
+
+                // PHP'den gelen başarılı yanıt
+                if (result.success) {
+                    errorMessage.style.color = 'green'; // Başarı mesajını yeşil renkte göster
+                    errorMessage.textContent = result.message;
+
+                    // Başarılı işlem sonrası yönlendirme
+                    setTimeout(() => {
+                        window.location.href = 'login.html'; // Kullanıcıyı login sayfasına yönlendir
+                    }, 2000); // 2 saniye bekledikten sonra yönlendirme
+                } else {
+                    // Hata mesajını göster
+                    errorMessage.style.color = 'red'; // Hata mesajını kırmızı renkte göster
+                    errorMessage.textContent = result.message;
+                }
+            } catch (error) {
+                // Eğer network hatası oluşursa, bu mesajı göster
+                errorMessage.textContent = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+                console.error('Hata:', error);
+            }
+        });
+
+        // Formlar arasında geçiş
+        document.querySelectorAll('.message a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.register-form').classList.toggle('hidden');
+                document.querySelector('.login-form').classList.toggle('hidden');
+            });
+        });
+
+        async function loginForm()  {
+            const username = document.querySelector('[name="loginUsername"]').value.trim();
+            const password = document.querySelector('[name="loginPassword"]').value.trim();
+            const errorMessage = document.getElementById('errorMessage'); // Dinamik hata mesajı için element oluştur
+            errorMessage.style.color = 'red';
+            errorMessage.style.marginTop = '10px';
+
+            // Hata m(esajını formun altına ekle
+          console.log(username+" "+password);
+
+            try {
+                const response = await fetch('http://localhost/todo_app/login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+                });
+               const result = await response.json();
+                console.log(result);
+                // PHP'den gelen başarılı yanıt
+                if (result.success) {
+                    errorMessage.style.color = 'green'; // Başarı mesajını yeşil renkte göster
+                    errorMessage.textContent = result.message;
+
+                    // Başarılı işlem sonrası yönlendirme
+                    setTimeout(() => {
+                        window.location.href = 'todolist.html'; // Kullanıcıyı todolist sayfasına yönlendir
+                    }, 2000); // 2 saniye bekledikten sonra yönlendirme
+                } else {
+                    // Hata mesajını göster
+                    errorMessage.style.color = 'red'; // Hata mesajını kırmızı renkte göster
+                    errorMessage.textContent = result.message;
+                }
+            } catch (error) {
+                // Eğer network hatası oluşursa, bu mesajı göster
+                errorMessage.textContent = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+                console.error('Hata:', error);
+            }
+        };
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+body {
+    background-image: url('http://localhost/todo_app/images/GdGGdZRagAEBtc6.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* Arka planın sabit kalmasını sağlar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.chart-container {
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    width: 700px;
+    height: auto;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(46, 11, 171, 0.3);
+    background-color: rgb(255, 255, 255);
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+.todo-content {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.category-content {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.done .todo-content {
+    text-decoration: line-through;
+}
+
+.todo-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.category-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteButton {
+    background-color: #3949AB;
+    color: white;
+}
+
+.deleteButton2 {
+    background-color: #7C4DFF;
+    color: white;
+}
+
+.deleteButtonKucuk {
+    background-color: #673AB7;
+    color: white;
+}
+
+.addButton {
+    background-color: #4824eb;
+    color: white;
+}
+
+.editButton {
+    background-color: #7e64f3;
+    color: white;
+}
+
+.toggleButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.toggleButton.complete {
+    background-color: #aa82f5;
+}
+
+.toggleButton.incomplete {
+    background-color: #448AFF;
+}
+
+.logoutButton {
+    background-color: #d503ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.completion-time {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+    display: block;
+}
+
+.user-container {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ddd;
+    text-align: left;
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/göz.css">
+  <link rel="stylesheet" href="css/uçak.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js dahil -->
+</head>
+
+<body>
+  <div class="main-container">
+    <!-- Pasta Grafiği Konteyneri -->
+    <div class="chart-container">
+      <canvas id="taskChart"></canvas>
+    </div>
+
+    <!-- Görev Listesi Konteyneri -->
+    <div class="container">
+      <h1>To Do List</h1>
+      <button class="logoutButton" onclick="logout()">Çıkış Yap</button>
+      <input type="text" id="todoInput" placeholder="Yeni görev ekleyin..." />
+      <button class="addButton" onclick="addTodo()">Ekle</button>
+      <ul class="todo-list" id="todos"></ul>
+      <button class="deleteButton" onclick="deleteAllTodos()">Tümünü Sil</button>
+      <button class="deleteButton2" onclick="deleteCompletedTodos()">Tamamlananları Sil</button>
+    </div>
+
+    <div class="eyes-container">
+      <div class="eyes">
+        <div>
+          <i></i>
+        </div>
+        <div>
+          <i></i>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="container">
+      <h2>Kategoriler</h2>
+      <input type="text" id="categoriInput" placeholder="Yeni kategori ekleyin..." />
+      <button class="addButton" onclick="addCategori()">Ekle</button>
+      <ul class="todo-list" id="categories"></ul>
+    </div>-->
+  </div>
+
+  <script src="js/scripts.js" defer></script>
+  <script src="js/göz.js" defer></script>
+
+
+</body>
+
+</html>
